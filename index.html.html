@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grow Your Cactus</title>
+  <style>
+    body {
+      background-color: #fdf8f2;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #405136;
+      font-size: 2em;
+    }
+
+    .logo {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 100px;
+    }
+
+    .cactus {
+      width: 150px;
+      transition: all 0.5s ease;
+    }
+
+    .button {
+      background-color: #fff;
+      color: #405136;
+      font-size: 1.2em;
+      border: 2px solid #405136;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #3d4636;
+    }
+  </style>
+</head>
+<body>
+  <h1>Grow Your Cactus</h1>
+  <img id="cactus" class="cactus" src="https://i.imgur.com/1YcM4sL.png" alt="Cactus Stage 1">
+  <button class="button" onclick="grow()">Water</button>
+  <div id="message" class="message"></div>
+  <img src="https://uploadthing.com/f/4a1dfb2e-cab5-4b4c-b9f8-5c8ed5fbbce0-grow-nature-logo.png" class="logo" alt="Grow Nature Logo">
+
+  <script>
+    const cactus = document.getElementById("cactus");
+    const message = document.getElementById("message");
+    let stage = 1;
+
+    function grow() {
+      stage++;
+      if (stage === 2) {
+        cactus.src = "https://i.imgur.com/mPaRM4H.png";
+      } else if (stage === 3) {
+        cactus.src = "https://i.imgur.com/Tq3oT4X.png";
+      } else if (stage === 4) {
+        cactus.src = "https://i.imgur.com/WRIMlOg.png";
+        message.textContent = "Congratulations on your first ever e-cactus! 🌵";
+      }
+    }
+  </script>
+</body>
+</html>
