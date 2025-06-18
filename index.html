@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grow Your Cactus</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f1eb;
+      text-align: center;
+      padding: 40px;
+      color: #3c3c3c;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+    #cactus-container {
+      width: 150px;
+      height: 250px;
+      margin: 30px auto;
+      background: url('https://i.imgur.com/7Qn7sAO.png') no-repeat center;
+      background-size: contain;
+    }
+    #water-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #6fbf73;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #message {
+      font-size: 1.2em;
+      margin-top: 30px;
+      color: #2f7d32;
+    }
+    #share-button {
+      margin-top: 20px;
+      padding: 10px 22px;
+      font-size: 1em;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #logo {
+      width: 120px;
+      margin-top: 50px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Grow Your Cactus</h1>
+  <div id="cactus-container"></div>
+  <button id="water-button">Water the Cactus</button>
+  <div id="message"></div>
+  <button id="share-button" style="display:none;">Share Your E-Cactus</button>
+  <br />
+  <img src="https://grownature.github.io/grow-your-cactus/Grow%20Nature%20Logo%20-%20white.png" id="logo" alt="Grow Nature logo"/>
+
+  <script>
+    let watered = 0;
+    const waterButton = document.getElementById('water-button');
+    const messageDiv = document.getElementById('message');
+    const shareButton = document.getElementById('share-button');
+    const cactusContainer = document.getElementById('cactus-container');
+
+    waterButton.addEventListener('click', () => {
+      watered++;
+      if (watered < 3) {
+        cactusContainer.style.backgroundImage = "url('https://i.imgur.com/OvMZBs9.png')";
+        messageDiv.textContent = "Keep watering...";
+      } else {
+        cactusContainer.style.backgroundImage = "url('https://i.imgur.com/JT3ZtYu.png')";
+        messageDiv.textContent = "🎉 Congratulations on your first ever e-cactus!";
+        shareButton.style.display = 'inline-block';
+        waterButton.disabled = true;
+      }
+    });
+
+    shareButton.addEventListener('click', () => {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: 'Check out my e-cactus!',
+          url: url
+        });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert("Link copied! Share it with your friends 🌵");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
